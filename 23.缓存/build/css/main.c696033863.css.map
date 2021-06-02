@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/css/index.css"],"names":[],"mappings":"AAAA;IACI,UAAU;IACV,SAAS;IACT,WAAW;IACX,sBAAsB;AAC1B,C","file":"css/main.c696033863.css","sourcesContent":["html,body {\r\n    padding: 0;\r\n    margin: 0;\r\n    width: 100%;\r\n    background-color: pink;\r\n}"],"sourceRoot":""}

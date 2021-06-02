@@ -1,25 +1,8 @@
-//此课程已完结
 
  const path = require("path");
  const HtmlWebpackPlugin = require("html-webpack-plugin");
  const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-/**
- * 
- * 缓存：
- * 	babel 缓存
- * 		cacheDirectory:true
- * 	文件资源缓存
- * 		hash: 每次webpack 构建打包生成唯一hash 值
- * 			问题：js 和 css 使用同一个hash 值。
- * 				如果重新打包，会导致所有缓存实现。（可能我只改动一个文件，导致所有缓存失效）
- * 			解决：chunkhash:根据 chunk 生成的hash ，如果打包来自同一个chunk，那么hash值就一样
- * 				问题：js 和 css 的hash 值还是一样的。因为css 是在 js 中被引入的，所以同属一个chunk
- *终极解决方案--> 解决：contenthash: 根据文件的内容生成hash,不同文件hash值一定不一样
- */
-
-
- 
  module.exports = {
 	entry:"./src/js/index.js",
 	 output:{

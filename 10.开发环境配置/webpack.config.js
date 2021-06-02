@@ -6,14 +6,17 @@
  * 
  * */
  
- const { resolve } = require("path");
+//  const { resolve } = require("path");
+ const path = require("path");
  const HtmlWebpackPlugin = require("html-webpack-plugin");
  
  module.exports = {
 	 entry:"./src/js/index.js",
 	 output:{
 		 filename:"js/built.js",
-		 path:resolve(__dirname,"build"),
+		 path: path.resolve(__dirname, 'build'),
+		 //todo: 不知道这个是干什么的
+		 publicPath: '',
 	 },
 	 module:{
 		 rules:[
@@ -69,11 +72,11 @@
 			 },
 			 {
 				 //处理图片 资源
-				 test:/\.(jpg|png|gif)$/,
+				 test:/\.(jpg|png|gif|jpeg)$/,
 				 use:[{
 					 loader:"url-loader",
 					 options:{
-						 limit:8*1024,
+						 limit:4*1024,
 						 name:'[hash:10].[ext]',
 						 //关闭es6 模块化
 						 esModule:false,
@@ -89,7 +92,7 @@
 			 },
 			 {
 				 //处理其他资源
-				 exclude:/\.(html|js|css|less|jpg|png|gif)/,
+				 exclude:/\.(html|js|css|less|jpg|png|gif|jpeg)/,
 				 use:[{
 					loader:"file-loader",
 					options:{
@@ -110,7 +113,7 @@
 	 target:"web",
 	 devServer:{
 		 //项目构建后的路径
-		 contentBase:resolve(__dirname,"build"),
+		 contentBase:path.resolve(__dirname,"build"),
 		 compress:true,
 		 port:3000,
 		 open:true,

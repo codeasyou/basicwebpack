@@ -21,8 +21,10 @@
     "file-loader": "^6.2.0",
     "html-loader": "^1.2.0",
     "html-webpack-plugin": "^4.5.2",
+    "less": "^4.1.1",
+    "less-loader": "^5.0.0",
     "style-loader": "^2.0.0",
-    "webpack": "^5.38.1",
+    "url-loader": "^4.1.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2"
   },

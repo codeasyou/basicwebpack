@@ -1,14 +1,22 @@
-const {resolve} = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-module.exports = {
-	entry:"./src/index.js",
-	output:{
-		filename:"build.js",
-		path:resolve(__dirname,'dist')
-	},
-	module:{
-		rules:[
+/**
+ * 开发环境配置：能让代码运行
+ * 运行项目指令：
+ * webpack 会将打包结果输出去
+ * npx webpack-dev-server 只会在内存中编译打包，没有输出
+ * 
+ * */
+ 
+ const { resolve } = require("path");
+ const HtmlWebpackPlugin = require("html-webpack-plugin");
+ 
+ module.exports = {
+	 entry:"./src/index.js",
+	 output:{
+		 filename:"built.js",
+		 path:resolve(__dirname,"build"),
+	 },
+	 module:{
+		 rules:[
 			{
 				/*
 					js 兼容性处理：babel-loader @babel @babel/preset-env
@@ -47,13 +55,64 @@ module.exports = {
 					]
 				}
 				
-			}
-		]
-	},
-	plugins:[
-		new HtmlWebpackPlugin({
-			template:"./src/index.html"
-		})
-	],
-	mode:"development"
-}
+			},
+			 //loader 的配置
+			 {
+				 //处理less 资源
+				 test:/\.less$/,
+				 use:["style-loader","css-loader","less-loader"]
+			 },
+			 {
+				 //处理css 资源
+				 test:/\.css$/,
+				 use:["style-loader","css-loader"]
+			 },
+			 {
+				 //处理图片 资源
+				 test:/\.(jpg|png|gif)$/,
+				 use:[{
+					 loader:"url-loader",
+					 options:{
+						 limit:8*1024,
+						 name:'[hash:10].[ext]',
+						 //关闭es6 模块化
+						 esModule:false,
+						 outputPath:"imgs"
+					 }
+				 }]
+			 },
+
+			 {
+				 //处理html 中的img资源
+				 test:/\.html$/,
+				 use:"html-loader"
+			 },
+			 {
+				 //处理其他资源
+				 exclude:/\.(html|js|css|less|jpg|png|gif)/,
+				 use:[{
+					loader:"file-loader",
+					options:{
+						 name:'[hash:10].[ext]',
+						 outputPath:'media'
+					} 
+				 }]
+			 },
+		 ]
+	 },
+	 plugins:[
+		 //plugins 的配置
+		 new HtmlWebpackPlugin({
+			 template:"./src/index.html"
+		 }),
+	 ],
+	 mode:"development",
+	 target:"web",
+	 devServer:{
+		 //项目构建后的路径
+		 contentBase:resolve(__dirname,"build"),
+		 compress:true,
+		 port:3000,
+		 open:true,
+	 }
+ };

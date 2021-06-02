@@ -33,18 +33,14 @@
 				include: /src/,
 				loader:"babel-loader",
 				options:{
-					//预设:指示babel做怎样的兼容性处理
 					presets:[
 						[
 							'@babel/preset-env',
 							{
-								//按需加载
 								useBuiltIns:'usage',
-								//指定core-js版本
 								corejs:{
 									version:3
 								},
-								//指定兼容性做到哪个版本浏览器
 								targets:{
 									chrome:'60',
 									firefox:'60',
@@ -58,14 +54,11 @@
 				}
 				
 			},
-			 //loader 的配置
 			 {
-				 //处理less 资源
 				 test:/\.less$/,
 				 use:["style-loader","css-loader","less-loader"]
 			 },
 			 {
-				 //处理css 资源
 				 test:/\.css$/,
 				 use:["style-loader","css-loader"]
 			 },
@@ -76,7 +69,6 @@
 					 options:{
 						 limit:4*1024,
 						 name:'[hash:10].[ext]',
-						 //关闭es6 模块化
 						 esModule:false,
 						 outputPath:"imgs"
 					 }

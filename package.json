@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "webpack": "^5.38.1"
   },
   "browserslist": {
     "development": [

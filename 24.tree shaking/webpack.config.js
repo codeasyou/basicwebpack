@@ -3,6 +3,16 @@
  const HtmlWebpackPlugin = require("html-webpack-plugin");
  const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+ /**
+  * tree shaking：去除无用代码
+  * 使用前提条件：1.必须使用 ES6 模块化， 2.开启 production 环境
+  * 作用：减少代码体积,去除应用程序中没有使用到的代码，让代码体积变得更小
+  *  "sideEffects":false : 所有代码都是没有副作用的代码，都可以进行 tree shaking 
+  * 	问题：可能会把 css/@babel/polyfill （副作用）文件干掉
+  * "sideEffects":["*.css"]
+  * 
+  */
+
  module.exports = {
 	entry:"./src/js/index.js",
 	 output:{
@@ -28,30 +38,6 @@
 						exclude: /node_modules/,
 						include: /src/,
 						loader:"babel-loader",
-						options:{
-							presets:[
-								[
-									'@babel/preset-env',
-									{
-										useBuiltIns:'usage',
-										corejs:{
-											version:3
-										},
-										targets:{
-											chrome:'60',
-											firefox:'60',
-											ie:'9',
-											safari:'10',
-											edge:'17'
-										}
-									}
-								]
-							],
-							//开启 babel 缓存
-							//第二次构建时，会读取之前的缓存
-							cacheDirectory:true
-						}
-						
 					},
 					 {
 						 test:/\.less$/,
@@ -100,14 +86,6 @@
             filename: "css/[name].[contenthash:10].css",
         }),
 	 ],
+	 //开启 production 环境
 	 mode:"production",
-	 target:"web",
-	 devServer:{
-		 contentBase:path.resolve(__dirname,"build"),
-		 compress:true,
-		 port:3000,
-		 open:true,
-		 hot:true,
-	 },
-	 devtool:"source-map"
  };

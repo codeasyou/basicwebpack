@@ -25,6 +25,7 @@
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^1.6.0",
     "style-loader": "^2.0.0",
+    "thread-loader": "^3.0.4",
     "url-loader": "^4.1.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2",
@@ -49,8 +50,8 @@
   },
   "eslintConfig": {
     "extends": "airbnb-base",
-    "env":{
-      "browser":true
+    "env": {
+      "browser": true
     }
   },
   "sideEffects": [

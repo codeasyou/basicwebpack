@@ -27,7 +27,8 @@
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "workbox-webpack-plugin": "^6.1.5"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
@@ -47,7 +48,13 @@
     ]
   },
   "eslintConfig": {
-    "extends": "airbnb-base"
+    "extends": "airbnb-base",
+    "env":{
+      "browser":true
+    }
   },
-  "sideEffects":["*.css","*.less"]
+  "sideEffects": [
+    "*.css",
+    "*.less"
+  ]
 }
